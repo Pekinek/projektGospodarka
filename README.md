@@ -4,7 +4,7 @@ Build using "mvn clean package".
 
 Run using "java -jar backend-1.0-SNAPSHOT.jar".
 
-Tomcat included in jar, start server on localhost:8080.
+Tomcat included in jar, starts server on localhost:8080.
 
 Works with H2 database for now.
 

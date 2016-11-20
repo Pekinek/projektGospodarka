@@ -29,7 +29,7 @@ public class UserManagementController {
             logger.info("Returning contact: " + users.get(0).toContact());
             return new ResponseEntity<>(users.get(0).toContact(), HttpStatus.OK);
         }
-        logger.warn("Something went wrong: " + users);
+        logger.warn("Something went wrong, user list: " + users);
         return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
 }

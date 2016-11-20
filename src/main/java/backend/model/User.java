@@ -1,13 +1,20 @@
 package backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Offer> offers = new HashSet<>();
 
     @Id
     @NotNull
@@ -26,6 +33,10 @@ public class User {
     private String lastName;
     @NotNull
     private String type;
+
+    public Set<Offer> getOffers() {
+        return offers;
+    }
 
     public String getLogin() {
         return login;

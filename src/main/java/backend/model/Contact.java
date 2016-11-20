@@ -1,7 +1,5 @@
 package backend.model;
 
-import javax.validation.constraints.NotNull;
-
 public class Contact {
 
     private String login;
