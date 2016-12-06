@@ -13,3 +13,4 @@ Works with H2 database for now.
 2. /user/get - finds user by token, returns Contact JSON or error if user not found
 3. /offers/upload - accept Offer JSON (user token is needed)
 4. /offers/all - returns JSON array of Offer
+5. /login - accepts login and password, returns token

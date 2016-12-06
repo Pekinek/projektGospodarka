@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,7 @@ public class OfferController {
     @Autowired
     OfferRepository offerRepository;
 
+    @CrossOrigin
     @RequestMapping("/offers/upload")
     public ResponseEntity<String> addOffer(@RequestBody Offer offer) throws UnauthorizedException {
         List<User> userList = userRepository.findByToken(offer.getUserToken());
@@ -41,6 +43,7 @@ public class OfferController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @CrossOrigin
     @RequestMapping("/offers/all")
     public ResponseEntity<Iterable<Offer>> getAllOffers(){
         return new ResponseEntity<>(offerRepository.findAll(), HttpStatus.OK);
