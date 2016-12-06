@@ -1,11 +1,8 @@
 package backend.controller;
 
-import backend.exceptions.UnauthorizedException;
-import backend.exceptions.UserNotFoundException;
-import backend.model.Offer;
-import backend.model.User;
-import backend.repository.OfferRepository;
-import backend.repository.UserRepository;
+import java.util.Date;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import backend.exceptions.UnauthorizedException;
+import backend.model.Offer;
+import backend.model.User;
+import backend.repository.OfferRepository;
+import backend.repository.UserRepository;
 
 @RestController
 public class OfferController {
@@ -31,13 +33,14 @@ public class OfferController {
 
     @CrossOrigin
     @RequestMapping("/offers/upload")
-    public ResponseEntity<String> addOffer(@RequestBody Offer offer) throws UnauthorizedException {
-        List<User> userList = userRepository.findByToken(offer.getUserToken());
+    public ResponseEntity<String> addOffer(@RequestHeader("Authorization") String token, @RequestBody Offer offer) throws UnauthorizedException {
+        List<User> userList = userRepository.findByToken(token);
         if(userList.size()!=1){
             logger.warn("Something went wrong, user list: " + userList);
             throw new UnauthorizedException();
         }
         offer.setUser(userList.get(0));
+        offer.setDate(new Date().toString());
         offerRepository.save(offer);
         logger.info("Offer added: " + offer.toString());
         return new ResponseEntity<>(HttpStatus.OK);

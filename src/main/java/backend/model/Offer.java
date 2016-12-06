@@ -30,8 +30,9 @@ public class Offer {
     private String purpose;
     @NotNull
     private String price;
-    @NotNull
     private String date;
+    
+    @Column( length = 100000 )
     private byte[] pictures;
     @Transient
     private String userToken;
