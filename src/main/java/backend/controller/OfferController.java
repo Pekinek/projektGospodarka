@@ -1,5 +1,7 @@
 package backend.controller;
 
+import backend.exceptions.UnauthorizedException;
+import backend.exceptions.UserNotFoundException;
 import backend.model.Offer;
 import backend.model.User;
 import backend.repository.OfferRepository;
@@ -27,16 +29,16 @@ public class OfferController {
     OfferRepository offerRepository;
 
     @RequestMapping("/offers/upload")
-    public ResponseEntity<String> addOffer(@RequestBody Offer offer) {
+    public ResponseEntity<String> addOffer(@RequestBody Offer offer) throws UnauthorizedException {
         List<User> userList = userRepository.findByToken(offer.getUserToken());
-        if(userList.size()==1){
-            offer.setUser(userList.get(0));
-            offerRepository.save(offer);
-            logger.info("Offer added: " + offer.toString());
-            return new ResponseEntity<>("Zapisano ofertę!", HttpStatus.OK);
+        if(userList.size()!=1){
+            logger.warn("Something went wrong, user list: " + userList);
+            throw new UnauthorizedException();
         }
-        logger.warn("Something went wrong, user list: " + userList);
-        return new ResponseEntity<>("Invalid token", HttpStatus.NOT_ACCEPTABLE);
+        offer.setUser(userList.get(0));
+        offerRepository.save(offer);
+        logger.info("Offer added: " + offer.toString());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping("/offers/all")

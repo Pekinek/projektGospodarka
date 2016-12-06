@@ -1,5 +1,6 @@
 package backend.controller;
 
+import backend.exceptions.UserNotFoundException;
 import backend.model.Contact;
 import backend.model.User;
 import backend.repository.UserRepository;
@@ -23,13 +24,13 @@ public class UserManagementController {
     UserRepository userRepository;
 
     @RequestMapping("/user/get")
-    public ResponseEntity<Contact> getUserByToken(@RequestBody String token){
+    public ResponseEntity<Contact> getUserByToken(@RequestBody String token) throws UserNotFoundException {
         List<User> users= userRepository.findByToken(token);
-        if(users.size() == 1){
-            logger.info("Returning contact: " + users.get(0).toContact());
-            return new ResponseEntity<>(users.get(0).toContact(), HttpStatus.OK);
+        if(users.size() != 1){
+            logger.warn("Something went wrong, user list: " + users);
+            throw new UserNotFoundException();
         }
-        logger.warn("Something went wrong, user list: " + users);
-        return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        logger.info("Returning contact: " + users.get(0).toContact());
+        return new ResponseEntity<>(users.get(0).toContact(), HttpStatus.OK);
     }
 }
