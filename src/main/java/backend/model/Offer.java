@@ -33,8 +33,5 @@ public class Offer {
     @NotNull
     private String date;
     private byte[] pictures;
-    @Transient
-    private String userToken;
-
 
 }
