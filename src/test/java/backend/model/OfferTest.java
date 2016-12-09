@@ -17,7 +17,6 @@ public class OfferTest {
         offer.setPlace("wrocław");
         offer.setPrice("123");
         offer.setPurpose("wynajem");
-        offer.setUserToken("blablatoken");
 
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(offer);

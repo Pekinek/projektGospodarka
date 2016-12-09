@@ -21,6 +21,8 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotNull
+    private String title;
+    @NotNull
     private String description;
     @NotNull
     private String type;
@@ -32,7 +34,7 @@ public class Offer {
     private String price;
     private String date;
     
-    @Column( length = 100000 )
+    @Column( length = 100000000 )
     private byte[] pictures;
 
 }
