@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +51,12 @@ public class OfferController {
     @RequestMapping("/offers/all")
     public ResponseEntity<Iterable<Offer>> getAllOffers(){
         return new ResponseEntity<>(offerRepository.findAll(), HttpStatus.OK);
+    }
+    
+    @CrossOrigin
+    @RequestMapping("/offers/{id}")
+    public ResponseEntity<Offer> getOfferById(@PathVariable("id") Integer id){
+        return new ResponseEntity<>(offerRepository.findOne(id), HttpStatus.OK);
     }
 
 }

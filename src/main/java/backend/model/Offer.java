@@ -34,7 +34,7 @@ public class Offer {
     private String price;
     private String date;
     
-    @Column( length = 100000000 )
+    @Column( length = 1000000000 )
     private byte[] pictures;
 
 }
