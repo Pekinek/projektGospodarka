@@ -39,6 +39,6 @@ public class LoginController {
             throw new InvalidPasswordException();
         }
         logger.info("User logged: " + user.getLogin());
-        return new ResponseEntity<>(new Token(user.getToken()), HttpStatus.OK);
+        return new ResponseEntity<>(new Token(user.getToken(), user.getLogin()), HttpStatus.OK);
     }
 }

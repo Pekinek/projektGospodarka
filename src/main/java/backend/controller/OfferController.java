@@ -58,5 +58,12 @@ public class OfferController {
     public ResponseEntity<Offer> getOfferById(@PathVariable("id") Integer id){
         return new ResponseEntity<>(offerRepository.findOne(id), HttpStatus.OK);
     }
+    
+    @CrossOrigin
+    @RequestMapping("/offers/user/{login}")
+    public ResponseEntity<Iterable<Offer>> getUserOffers(@PathVariable("login") String login){
+    	List<User> userList = userRepository.findByLogin(login);
+        return new ResponseEntity<>(offerRepository.findByUser(userList.get(0)), HttpStatus.OK);
+    }
 
 }
