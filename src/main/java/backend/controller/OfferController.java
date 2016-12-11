@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import backend.exceptions.UnauthorizedException;
@@ -64,6 +65,19 @@ public class OfferController {
     public ResponseEntity<Iterable<Offer>> getUserOffers(@PathVariable("login") String login){
     	List<User> userList = userRepository.findByLogin(login);
         return new ResponseEntity<>(offerRepository.findByUser(userList.get(0)), HttpStatus.OK);
+    }
+    
+    @CrossOrigin
+    @RequestMapping(method = {RequestMethod.DELETE}, value = {"/offers/delete/{id}"})
+    public ResponseEntity<Iterable<Offer>> removeOffer(@RequestHeader("Authorization") String token, @PathVariable Integer id) throws UnauthorizedException{
+    	Offer offer = offerRepository.findOne(id);
+    	if(offer.getUser().getToken().equals(token)) {
+    		offerRepository.delete(offer);
+    	}
+    	else {
+    		throw new UnauthorizedException();
+    	}
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
