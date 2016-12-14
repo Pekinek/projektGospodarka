@@ -20,6 +20,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Offer> offers = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments = new HashSet<>();
+
     @Id
     @NotNull
     private String login;
