@@ -29,7 +29,7 @@ public class CommentController {
     @CrossOrigin
     @RequestMapping("/offers/{id}/addComment")
     public ResponseEntity<String> addComment(@PathVariable("id") Integer offerId, @RequestHeader("Authorization") String token, @RequestBody Comment comment){
-        comment.setDate(new Date().toString());
+        comment.setDate(new Date().getTime());
         comment.setOffer(offerRepository.findOne(offerId));
         comment.setUser(userRepository.findByToken(token).get(0));
         commentRepository.save(comment);

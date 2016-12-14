@@ -9,10 +9,10 @@ public class CommentSummary {
 
     private String login;
     private Integer offerId;
-    private String date;
+    private Long date;
     private String message;
 
-    public CommentSummary(String login, Integer offerId, String date, String message) {
+    public CommentSummary(String login, Integer offerId, Long date, String message) {
         this.login = login;
         this.offerId = offerId;
         this.date = date;

@@ -37,7 +37,7 @@ public class Offer {
     private String purpose;
     @NotNull
     private String price;
-    private String date;
+    private Long date;
     
     @Column( length = 1000000000 )
     private byte[] pictures;

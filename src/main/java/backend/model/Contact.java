@@ -13,6 +13,10 @@ public class Contact {
     private String firstName;
     private String lastName;
 
+    public Contact() {
+        super();
+    }
+    
     public Contact(String login, String email, String telephone, String firstName, String lastName) {
         this.login = login;
         this.email = email;

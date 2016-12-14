@@ -42,7 +42,7 @@ public class OfferController {
             throw new UnauthorizedException();
         }
         offer.setUser(userList.get(0));
-        offer.setDate(new Date().toString());
+        offer.setDate(new Date().getTime());
         offerRepository.save(offer);
         logger.info("Offer added: " + offer.toString());
         return new ResponseEntity<>(HttpStatus.OK);
