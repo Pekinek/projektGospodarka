@@ -1,5 +1,6 @@
 package backend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +57,39 @@ public class AdminController {
     }
 	
     @RequestMapping("/users/all")
-    public ResponseEntity<Iterable<User>> getUsers(){
-		List<User> users = (List<User>) userRepository.findAll();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<Iterable<Contact>> getUsers(){
+		List<User> users = (List<User>) userRepository.findByType("normal");
+		ArrayList<Contact> contacts = new ArrayList<Contact>();
+		
+		for(User user: users) {
+			contacts.add(user.toContact());
+		}
+		
+        return new ResponseEntity<>(contacts, HttpStatus.OK);
+    }
+    
+    @RequestMapping(method = {RequestMethod.PUT}, value = {"/user/enable"})
+    public ResponseEntity<String> enableUser(@RequestHeader("Authorization") String token, @RequestBody String login) throws UnauthorizedException, UserNotFoundException{
+    	List<User> users = userRepository.findByToken(token);
+    	if(users.size() != 1 || users.get(0).getType() != "admin"){
+            throw new UnauthorizedException();
+        }
+    	User user = userRepository.findOne(login);
+    	user.setEnabled(true);
+    	userRepository.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @RequestMapping(method = {RequestMethod.PUT}, value = {"/user/disable"})
+    public ResponseEntity<String> disableUser(@RequestHeader("Authorization") String token, @RequestBody String login) throws UnauthorizedException, UserNotFoundException{
+    	List<User> users = userRepository.findByToken(token);
+    	if(users.size() != 1 || users.get(0).getType() != "admin"){
+            throw new UnauthorizedException();
+        }
+    	User user = userRepository.findOne(login);
+    	user.setEnabled(false);
+    	userRepository.save(user);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

@@ -41,8 +41,10 @@ public class User {
     private String lastName;
     @NotNull
     private String type;
+    @NotNull
+    private Boolean enabled;
 
     public Contact toContact(){
-        return new Contact(login, email, telephone, firstName, lastName);
+        return new Contact(login, email, telephone, firstName, lastName, enabled);
     }
 }

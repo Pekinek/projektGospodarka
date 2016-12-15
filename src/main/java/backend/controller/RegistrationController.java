@@ -40,6 +40,7 @@ public class RegistrationController {
         }
         user.setType("normal");
         user.setToken(UUID.randomUUID().toString());
+        user.setEnabled(true);
         String password = RandomStringUtils.randomAlphanumeric(10);
         user.setPassword(DigestUtils.sha512Hex(password));
         userRepository.save(user);
