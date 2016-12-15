@@ -3,6 +3,7 @@ package backend.controller;
 import backend.exceptions.UserExistsException;
 import backend.model.User;
 import backend.repository.UserRepository;
+import backend.service.EmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class RegistrationController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    EmailService emailService;
+
     @CrossOrigin
     @RequestMapping("/register")
     public ResponseEntity<String> register(@RequestBody User user) throws UserExistsException {
@@ -33,6 +37,7 @@ public class RegistrationController {
         user.setType("normal");
         user.setToken(UUID.randomUUID().toString());
         userRepository.save(user);
+        emailService.sendEmail(user);
         logger.info("User added to database:" + user.toString());
         return new ResponseEntity<>(HttpStatus.OK);
     }
