@@ -38,6 +38,7 @@ public class Offer {
     @NotNull
     private String price;
     private Long date;
+    private Boolean archived;
     
     @Column( length = 1000000000 )
     private byte[] pictures;
