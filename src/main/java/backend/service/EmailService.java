@@ -17,10 +17,12 @@ public class EmailService {
     @Autowired
     private SimpleMailMessage templateMessage;
 
-    public void sendEmail(User user){
+    public void sendEmail(User user, String password){
         SimpleMailMessage msg = new SimpleMailMessage(this.templateMessage);
         msg.setTo(user.getEmail());
-        msg.setText("Dear " + user.getFirstName() + user.getLastName() + ", thank you for registering.");
+        msg.setText("Dear " + user.getFirstName() + " " + user.getLastName() 
+        		+ ", thank you for registration. "
+        		+ "Your password: " + password);
         try{
             this.mailSender.send(msg);
         }
