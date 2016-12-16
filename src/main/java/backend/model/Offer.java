@@ -52,4 +52,7 @@ public class Offer {
     @Column( length = 1000000000 )
     private byte[] pictures;
 
+    public Contact getContact(){
+        return user.toContact();
+    }
 }
