@@ -31,8 +31,10 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotNull
+    @Column (length = 100)
     private String title;
     @NotNull
+    @Column (length = 500)
     private String description;
     @NotNull
     private String type;
