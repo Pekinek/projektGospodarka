@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,10 @@ public class Offer {
     @JsonIgnore
     @ManyToOne
     private User user;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy="favouriteOffers")
+    private Set<User> userFavourite = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "offer")
