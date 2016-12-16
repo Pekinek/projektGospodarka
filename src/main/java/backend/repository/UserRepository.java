@@ -13,4 +13,6 @@ public interface UserRepository extends PagingAndSortingRepository<User, String>
     List<User> findByLogin(@Param("login") String login);
 
     List<User> findByToken(@Param("token") String token);
+    
+    List<User> findByType(@Param("type") String type);
 }

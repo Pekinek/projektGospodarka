@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -19,6 +20,14 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Offer> offers = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany
+    private Set<Offer> favouriteOffers = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Comment> comments = new HashSet<>();
 
     @Id
     @NotNull
@@ -37,8 +46,10 @@ public class User {
     private String lastName;
     @NotNull
     private String type;
+    @NotNull
+    private Boolean enabled;
 
     public Contact toContact(){
-        return new Contact(login, email, telephone, firstName, lastName);
+        return new Contact(login, email, telephone, firstName, lastName, enabled);
     }
 }

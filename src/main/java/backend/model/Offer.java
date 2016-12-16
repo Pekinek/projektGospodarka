@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,6 +18,14 @@ public class Offer {
     @JsonIgnore
     @ManyToOne
     private User user;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy="favouriteOffers")
+    private Set<User> userFavourite = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "offer")
+    private Set<Comment> comments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,9 +42,13 @@ public class Offer {
     private String purpose;
     @NotNull
     private String price;
-    private String date;
+    private Long date;
+    private Boolean archived;
     
     @Column( length = 1000000000 )
     private byte[] pictures;
 
+    public Contact getContact(){
+        return user.toContact();
+    }
 }

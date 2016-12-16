@@ -42,7 +42,8 @@ public class OfferController {
             throw new UnauthorizedException();
         }
         offer.setUser(userList.get(0));
-        offer.setDate(new Date().toString());
+        offer.setDate(new Date().getTime());
+        offer.setArchived(false);
         offerRepository.save(offer);
         logger.info("Offer added: " + offer.toString());
         return new ResponseEntity<>(HttpStatus.OK);
@@ -51,7 +52,7 @@ public class OfferController {
     @CrossOrigin
     @RequestMapping("/offers/all")
     public ResponseEntity<Iterable<Offer>> getAllOffers(){
-        return new ResponseEntity<>(offerRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(offerRepository.findByArchived(false), HttpStatus.OK);
     }
     
     @CrossOrigin
@@ -64,7 +65,7 @@ public class OfferController {
     @RequestMapping("/offers/user/{login}")
     public ResponseEntity<Iterable<Offer>> getUserOffers(@PathVariable("login") String login){
     	List<User> userList = userRepository.findByLogin(login);
-        return new ResponseEntity<>(offerRepository.findByUser(userList.get(0)), HttpStatus.OK);
+        return new ResponseEntity<>(offerRepository.findByUserAndArchived(userList.get(0), false), HttpStatus.OK);
     }
     
     @CrossOrigin

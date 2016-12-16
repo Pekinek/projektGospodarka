@@ -12,5 +12,8 @@ import java.util.List;
 public interface OfferRepository extends PagingAndSortingRepository<Offer, Integer> {
     List<Offer> findByUser(@Param("user") User user);
 
+    List<Offer> findByArchived(@Param("archived") Boolean archived);
+    
+    List<Offer> findByUserAndArchived(@Param("user") User user, @Param("archived") Boolean archived);
 
 }
