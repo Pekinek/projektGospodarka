@@ -40,7 +40,7 @@ public class FavouriteController {
     }
 
     @CrossOrigin
-    @RequestMapping("/favourites")
+    @RequestMapping("/offers/favourites")
     public ResponseEntity<Iterable<Offer>> getFavourites(@RequestHeader("Authorization") String token) throws UnauthorizedException {
         List<User> users = userRepository.findByToken(token);
         if (users.size() != 1) {

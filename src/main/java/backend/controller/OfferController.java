@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import backend.exceptions.UnauthorizedException;
+import backend.model.Comment;
 import backend.model.Offer;
 import backend.model.User;
+import backend.repository.CommentRepository;
 import backend.repository.OfferRepository;
 import backend.repository.UserRepository;
 
@@ -32,6 +34,9 @@ public class OfferController {
 
     @Autowired
     OfferRepository offerRepository;
+    
+    @Autowired
+    CommentRepository commentRepository;
 
     @CrossOrigin
     @RequestMapping("/offers/upload")
@@ -72,7 +77,16 @@ public class OfferController {
     @RequestMapping(method = {RequestMethod.DELETE}, value = {"/offers/delete/{id}"})
     public ResponseEntity<Iterable<Offer>> removeOffer(@RequestHeader("Authorization") String token, @PathVariable Integer id) throws UnauthorizedException{
     	Offer offer = offerRepository.findOne(id);
+    	
     	if(offer.getUser().getToken().equals(token)) {
+    		List<Comment> comments = commentRepository.findByOfferId(id);
+    		List<User> users = (List<User>) userRepository.findAll();
+    		
+    		for(User user: users) {
+    			user.getFavouriteOffers().remove(offer);
+    		}
+    		
+    		commentRepository.delete(comments);
     		offerRepository.delete(offer);
     	}
     	else {
