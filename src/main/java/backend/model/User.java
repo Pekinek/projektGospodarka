@@ -1,8 +1,7 @@
 package backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,8 +9,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 @Setter
@@ -35,8 +39,10 @@ public class User {
     @Size(min=1, max=30)
     private String login;
     @NotNull
+    @JsonProperty(access = Access.WRITE_ONLY)
     private String token;
     @NotNull
+    @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
     @NotNull
     @Size(min=1, max=30)
