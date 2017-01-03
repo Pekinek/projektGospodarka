@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,18 +32,23 @@ public class User {
 
     @Id
     @NotNull
+    @Size(min=1, max=30)
     private String login;
     @NotNull
     private String token;
     @NotNull
     private String password;
     @NotNull
+    @Size(min=1, max=30)
     private String email;
     @NotNull
+    @Size(min=6, max=15)
     private String telephone;
     @NotNull
+    @Size(min=1, max=30)
     private String firstName;
     @NotNull
+    @Size(min=1, max=30)
     private String lastName;
     @NotNull
     private String type;
