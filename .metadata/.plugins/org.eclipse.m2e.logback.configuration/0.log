@@ -136,3 +136,7 @@
 2017-01-07 17:20:22,957 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Zack\workspace\Automated Test\Tests\src\main\resources
 2017-01-07 17:20:22,958 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2017-01-07 17:20:22,959 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Zack\workspace\Automated Test\Tests\src\test\resources
+2017-01-07 18:03:30,096 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-01-07 18:03:30,097 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Zack\workspace\Automated Test\Tests\src\main\resources
+2017-01-07 18:03:30,098 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2017-01-07 18:03:30,098 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Zack\workspace\Automated Test\Tests\src\test\resources
