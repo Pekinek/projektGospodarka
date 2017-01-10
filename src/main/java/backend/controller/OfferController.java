@@ -66,9 +66,14 @@ public class OfferController {
 	@CrossOrigin
 	@RequestMapping("/offers/all")
 	public ResponseEntity<PagedResources<Resource<Offer>>> getAllOffers(
-			@RequestParam(value = "filter", required = false) String filter,
-			Pageable pageable, PagedResourcesAssembler<Offer> assembler) {
-		Page<Offer> offers = offerRepository.findByArchived(false, pageable);
+			@RequestParam("title") String title,
+			@RequestParam("type") String type,
+			@RequestParam("place") String place,
+			@RequestParam("purpose") String purpose,
+			@RequestParam("price") String price, Pageable pageable,
+			PagedResourcesAssembler<Offer> assembler) {
+		Page<Offer> offers = offerRepository.findByFilter(title, type, place,
+				purpose, price, pageable);
 
 		return new ResponseEntity<PagedResources<Resource<Offer>>>(
 				assembler.toResource(offers), HttpStatus.OK);
@@ -84,10 +89,15 @@ public class OfferController {
 	@RequestMapping("/offers/user/{login}")
 	public ResponseEntity<PagedResources<Resource<Offer>>> getUserOffers(
 			@PathVariable("login") String login,
-			@RequestParam(value = "filter", required = false) String filter,
-			Pageable pageable, PagedResourcesAssembler<Offer> assembler) {
+			@RequestParam("title") String title,
+			@RequestParam("type") String type,
+			@RequestParam("place") String place,
+			@RequestParam("purpose") String purpose,
+			@RequestParam("price") String price, Pageable pageable,
+			PagedResourcesAssembler<Offer> assembler) {
 		User user = userRepository.findOne(login);
-		Page<Offer> offers = offerRepository.findByUser(user, pageable);
+		Page<Offer> offers = offerRepository.findByUserAndFilter(login, title,
+				type, place, purpose, price, pageable);
 		return new ResponseEntity<PagedResources<Resource<Offer>>>(
 				assembler.toResource(offers), HttpStatus.OK);
 	}
