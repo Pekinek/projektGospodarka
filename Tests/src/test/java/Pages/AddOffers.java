@@ -1,5 +1,10 @@
 package Pages;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,12 +13,14 @@ import org.openqa.selenium.support.ui.Select;
 import TestData.Browser;
 
 public class AddOffers extends Browser{
-	private String title = "Nowe tanie mieszkanie";
+	private String title = "Nowe tanie mieszkanie ";
 	private String city = "Wrocław";
 	private String destiny = "sale";
 	private String price = "1 000 000";
 	private String type = "flat";
 	private String description = "Super tanie mieszkanie. Więcej informacji pod numerem: xxx xxx xxx";
+	private DateFormat dateFormat;
+	private Date date;
 	private static final String TITLE_FIELD_CSS = "#title";
 	private static final String CITY_FIELD_CSS = "#place";
 	private static final String DESTINY_FIELD_CSS = "#purpose";
@@ -22,13 +29,13 @@ public class AddOffers extends Browser{
 	private static final String DESCRIPTION_FIELD_CSS = "#description";
 	private static final String ADD_IMAGE_BUTTON_XPATH = "//input[@type='file']";
 	private static final String ADD_OFFERS_BUTTON_CSS = ".btn.btn-primary.pull-right.ng-binding";;
-	private static final String PATH_TO_IMAGE = "C:\\Users\\Zack\\Desktop\\Studia - mgr\\Semestr 1\\pokoj.jpg";
+	private static final String PATH_TO_IMAGE = new File("src/test/resources/pokoj.jpg").getAbsolutePath();
 	
 	public AddOffers provideDataToAddOffer(WebDriver driver){
 		Select destinyDropdown = new Select(driver.findElement(By.cssSelector(DESTINY_FIELD_CSS)));
 		Select typeDropdown = new Select(driver.findElement(By.cssSelector(TYPE_FIELD_CSS)));
 		
-		driver.findElement(By.cssSelector(TITLE_FIELD_CSS)).sendKeys(title);
+		driver.findElement(By.cssSelector(TITLE_FIELD_CSS)).sendKeys(title + getDate());
 		driver.findElement(By.cssSelector(CITY_FIELD_CSS)).sendKeys(city);
 		destinyDropdown.selectByValue(destiny);
 		driver.findElement(By.cssSelector(PRICE_FIELD_CSS)).sendKeys(price);
@@ -63,6 +70,12 @@ public class AddOffers extends Browser{
 	
 	public String checkStatusOfAddButton(WebDriver driver){
 		return driver.findElement(By.cssSelector(ADD_OFFERS_BUTTON_CSS)).getAttribute("disabled");
+	}
+	
+	private String getDate(){
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
+		return dateFormat.format(date);
 	}
 
 }
