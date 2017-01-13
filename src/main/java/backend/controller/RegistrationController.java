@@ -1,5 +1,6 @@
 package backend.controller;
 
+import backend.exceptions.InvalidPhoneNumberException;
 import backend.exceptions.UserExistsException;
 import backend.model.User;
 import backend.repository.UserRepository;
@@ -7,6 +8,7 @@ import backend.service.EmailService;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +35,13 @@ public class RegistrationController {
 
     @CrossOrigin
     @RequestMapping("/register")
-    public ResponseEntity<String> register(@RequestBody User user) throws UserExistsException {
+    public ResponseEntity<String> register(@RequestBody User user) throws UserExistsException, InvalidPhoneNumberException {
         if(!userRepository.findByLogin(user.getLogin()).isEmpty()){
             logger.warn("User \"" + user.getLogin() + "\" already exists!");
             throw new UserExistsException();
+        }
+        if(!StringUtils.isNumeric(user.getTelephone())){
+            throw new InvalidPhoneNumberException();
         }
         user.setType("normal");
         user.setToken(UUID.randomUUID().toString());
