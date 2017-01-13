@@ -1,6 +1,5 @@
 package Pages;
 
-import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
@@ -69,14 +68,19 @@ public class DetailsOfOffer extends Browser {
 		return driver.findElement(By.xpath(FIRST_COMMENT_XPATH)).getText();
 	}
 	
-	public String getCommentByUser(WebDriver driver, String userName){
-		return driver.findElement(By.xpath("//*[@class='ng-binding' and text()='"+userName+"']")).getText();
+	//not ready
+	public String checkIfCommentExist(WebDriver driver, String comment){
+		return driver.findElement(By.xpath("//*[@class='ng-binding' and text()='"+comment+"']")).getText();
 	}
 	
-	public DetailsOfOffer addComment(WebDriver driver, String comment) throws AWTException{
+	public DetailsOfOffer addComment(WebDriver driver, String comment){
 		driver.findElement(By.cssSelector(COMMENT_FIELD_CSS)).sendKeys(comment);
-		Robot robot = new Robot();
-		robot.keyPress(KeyEvent.VK_ENTER);
+		try{
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_ENTER);
+		}catch(Exception e){
+			
+		}
 		return this;
 	}
 	

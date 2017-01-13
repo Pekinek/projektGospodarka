@@ -2,7 +2,6 @@ package PageObjects;
 
 import java.awt.AWTException;
 import java.awt.Robot;
-import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

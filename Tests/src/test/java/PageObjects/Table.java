@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import Pages.NewOffers;
 import TestData.Browser;
 
 public class Table extends Browser{

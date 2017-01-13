@@ -1,9 +1,6 @@
 package Pages;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,8 +16,6 @@ public class AddOffers extends Browser{
 	private String price = "1 000 000";
 	private String type = "flat";
 	private String description = "Super tanie mieszkanie. Więcej informacji pod numerem: xxx xxx xxx";
-	private DateFormat dateFormat;
-	private Date date;
 	private static final String TITLE_FIELD_CSS = "#title";
 	private static final String CITY_FIELD_CSS = "#place";
 	private static final String DESTINY_FIELD_CSS = "#purpose";
@@ -72,10 +67,6 @@ public class AddOffers extends Browser{
 		return driver.findElement(By.cssSelector(ADD_OFFERS_BUTTON_CSS)).getAttribute("disabled");
 	}
 	
-	private String getDate(){
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		date = new Date();
-		return dateFormat.format(date);
-	}
+	
 
 }

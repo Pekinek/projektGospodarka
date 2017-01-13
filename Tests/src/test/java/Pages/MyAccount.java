@@ -21,7 +21,7 @@ public class MyAccount extends Browser{
 	}
 	
 	public String getEmail(WebDriver driver){
-		return driver.findElement(By.cssSelector(EMAIL_FIELD_CSS)).getText();
+		return driver.findElement(By.cssSelector(EMAIL_FIELD_CSS)).getAttribute("value");
 	}
 	
 	public MyAccount setNewName(WebDriver driver, String name){
@@ -30,7 +30,7 @@ public class MyAccount extends Browser{
 	}
 	
 	public String getName(WebDriver driver){
-		return driver.findElement(By.cssSelector(NAME_FIELD_CSS)).getText();
+		return driver.findElement(By.cssSelector(NAME_FIELD_CSS)).getAttribute("value");
 	}
 	
 	public MyAccount setNewSurname(WebDriver driver, String surname){
@@ -39,7 +39,7 @@ public class MyAccount extends Browser{
 	}
 	
 	public String getSurname(WebDriver driver){
-		return driver.findElement(By.cssSelector(SURNAME_FIELD_CSS)).getText();
+		return driver.findElement(By.cssSelector(SURNAME_FIELD_CSS)).getAttribute("value");
 	}
 	
 	public MyAccount setNewPhoneNo(WebDriver driver, String phone){
@@ -48,7 +48,7 @@ public class MyAccount extends Browser{
 	}
 	
 	public String getPhoneNo(WebDriver driver){
-		return driver.findElement(By.cssSelector(PHONE_NO_FIELD_CSS)).getText();
+		return driver.findElement(By.cssSelector(PHONE_NO_FIELD_CSS)).getAttribute("value");
 	}
 	
 	public MyAccount pressAcceptButtonForData(WebDriver driver){

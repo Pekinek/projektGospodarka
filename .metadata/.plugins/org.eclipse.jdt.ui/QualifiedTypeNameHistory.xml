@@ -6,4 +6,18 @@
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.gargoylesoftware.htmlunit.javascript.host.Navigator"/>
+<fullyQualifiedTypeName name="Pages.DetailsOfOffer"/>
+<fullyQualifiedTypeName name="Pages.MyAccount"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="Pages.Login"/>
+<fullyQualifiedTypeName name="TestData.Browser"/>
+<fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
+<fullyQualifiedTypeName name="org.openqa.selenium.By"/>
+<fullyQualifiedTypeName name="PageObjects.ConfirmWindow"/>
+<fullyQualifiedTypeName name="Pages.MyOffers"/>
+<fullyQualifiedTypeName name="junit.framework.Assert"/>
+<fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
+<fullyQualifiedTypeName name="java.lang.annotation.Repeatable"/>
+<fullyQualifiedTypeName name="TestCase.AutomationTests.AddOffersPage"/>
 </qualifiedTypeNameHistroy>

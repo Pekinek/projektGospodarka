@@ -1,11 +1,16 @@
 package TestData;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import PageObjects.ConfirmWindow;
 import PageObjects.Messages;
 import PageObjects.Navigation;
 
@@ -13,10 +18,13 @@ public class Browser {
 	protected WebDriver driver;
 	protected Navigation navigate;
 	protected Messages messages;
+	protected ConfirmWindow confirmWindow;
 	protected static final String LOADING_BAR_CSS = "#loading-bar";
 	private WebDriverWait wait;
 	private static final String address = "http://192.166.217.17/";
 	private String handler;
+	private DateFormat dateFormat;
+	private Date date;
 	
 	public Browser(){
 	}
@@ -45,9 +53,15 @@ public class Browser {
 	public void waitUntilPageFinishLoading(WebDriver driver){
 		waitUntilElementIsVisible(driver, By.xpath(LOADING_BAR_CSS));
 		try{
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 		}catch(Exception e){
 		}
+	}
+	
+	public String getDate(){
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
+		return dateFormat.format(date);
 	}
 	
 	public void closeBrowser(){

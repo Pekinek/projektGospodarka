@@ -1,5 +1,7 @@
 package TestCase.AutomationTests;
 
+import java.lang.annotation.Repeatable;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;

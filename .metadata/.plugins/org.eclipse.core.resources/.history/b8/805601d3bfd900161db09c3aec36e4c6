@@ -1,0 +1,11 @@
+package PageObjects;
+
+import TestData.Browser;
+
+public class ConfirmWindow extends Browser{
+	private static final String YES_BUTTON_CSS = "";
+	private static final String NO_BUTTON_CSS = "";
+	private static final String TEXT_CSS = "";
+	private static final String CLOSE_WINDOW_CSS = "";
+
+}

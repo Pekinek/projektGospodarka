@@ -1,0 +1,16 @@
+package TestCase.AutomationTests;
+
+import org.junit.Before;
+
+import TestData.Browser;
+
+public class MyOffersPage extends Browser{
+	
+	@Before
+	public void setuo(){
+		prepareBrowser();
+	}
+	
+	
+
+}

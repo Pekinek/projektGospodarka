@@ -1,0 +1,19 @@
+package Automation.Tests;
+
+import TestCase.AutomationTests.AddOffersPage;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+       AddOffersPage test = new AddOffersPage();
+       
+       for(int i=0; i<10; i++){
+    	   test.correctAddingOffer();
+       }
+    }
+}
