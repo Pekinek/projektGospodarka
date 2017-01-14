@@ -1,5 +1,12 @@
 package TestData;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,17 +26,29 @@ public class Browser {
 	protected Navigation navigate;
 	protected Messages messages;
 	protected ConfirmWindow confirmWindow;
+	protected String dateToSave;
 	protected static final String LOADING_BAR_CSS = "#loading-bar";
 	private WebDriverWait wait;
 	private static final String address = "http://192.166.217.17/";
 	private String handler;
 	private DateFormat dateFormat;
 	private Date date;
+	private String pathToFIle = new File("src/test/resources/date.txt").getAbsolutePath();
+	private FileReader read;
+	private BufferedReader buffereReader;
+	private FileWriter write;
+	private BufferedWriter buffereWriter;
 	
 	public Browser(){
 	}
 	
 	public void prepareBrowser(){
+		try{
+			read = new FileReader(pathToFIle);
+			buffereReader = new BufferedReader(read);
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Zack\\Desktop\\Studia - mgr\\Semestr 1\\projektGospodarka-master\\chromeDriver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
@@ -38,6 +57,11 @@ public class Browser {
 		messages = new Messages();
 		navigate = new Navigation();
 		waitUntilElementIsNotVisible(driver, By.xpath(Navigation.TITLE_ON_NEW_OFERS_PAGE_XPATH));
+		try {
+			dateToSave = buffereReader.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void waitUntilElementIsNotVisible(WebDriver driver, By locatorOfElement){
@@ -61,7 +85,15 @@ public class Browser {
 	public String getDate(){
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
-		return dateFormat.format(date);
+		dateToSave = dateFormat.format(date);
+		try {
+			write = new FileWriter(pathToFIle);
+			buffereWriter = new BufferedWriter(write);
+			buffereWriter.write(dateToSave);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return dateToSave;
 	}
 	
 	public void closeBrowser(){
