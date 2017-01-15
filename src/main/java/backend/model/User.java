@@ -43,18 +43,19 @@ public class User {
     private String token;
     @NotNull
     @JsonProperty(access = Access.WRITE_ONLY)
+    @Size(min=10, max=50)
     private String password;
     @NotNull
-    @Size(min=1, max=30)
+    @Size(min=1, max=50)
     private String email;
     @NotNull
     @Size(min=6, max=15)
     private String telephone;
     @NotNull
-    @Size(min=1, max=30)
+    @Size(min=1, max=50)
     private String firstName;
     @NotNull
-    @Size(min=1, max=30)
+    @Size(min=1, max=50)
     private String lastName;
     @NotNull
     private String type;

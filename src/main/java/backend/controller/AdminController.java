@@ -28,8 +28,6 @@ import backend.repository.CommentRepository;
 import backend.repository.OfferRepository;
 import backend.repository.UserRepository;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @RestController
 @CrossOrigin
 @RequestMapping("/admin")
@@ -46,9 +44,14 @@ public class AdminController {
 
 	@RequestMapping("/offers/all")
 	public ResponseEntity<PagedResources<Resource<Offer>>> getAllOffers(
-			@RequestParam(value = "filter", required = false) String filter,
-			Pageable pageable, PagedResourcesAssembler<Offer> assembler) {
-		Page<Offer> offers = offerRepository.findAll(pageable);
+			@RequestParam("title") String title,
+			@RequestParam("type") String type,
+			@RequestParam("place") String place,
+			@RequestParam("purpose") String purpose,
+			@RequestParam("price") Double price, Pageable pageable,
+			PagedResourcesAssembler<Offer> assembler) {
+		Page<Offer> offers = offerRepository.findByFilter(title, type, place,
+				purpose, price, pageable);
 		for (Offer offer : offers) {
 			offer.setPictures(null);
 		}

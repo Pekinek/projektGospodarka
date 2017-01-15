@@ -31,6 +31,7 @@ import backend.repository.OfferRepository;
 import backend.repository.UserRepository;
 
 @RestController
+@CrossOrigin
 public class OfferController {
 
 	private final Logger logger = LoggerFactory
@@ -45,7 +46,6 @@ public class OfferController {
 	@Autowired
 	CommentRepository commentRepository;
 
-	@CrossOrigin
 	@RequestMapping("/offers/upload")
 	public ResponseEntity<String> addOffer(
 			@RequestHeader("Authorization") String token,
@@ -63,14 +63,13 @@ public class OfferController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping("/offers/all")
 	public ResponseEntity<PagedResources<Resource<Offer>>> getAllOffers(
 			@RequestParam("title") String title,
 			@RequestParam("type") String type,
 			@RequestParam("place") String place,
 			@RequestParam("purpose") String purpose,
-			@RequestParam("price") String price, Pageable pageable,
+			@RequestParam("price") Double price, Pageable pageable,
 			PagedResourcesAssembler<Offer> assembler) {
 		Page<Offer> offers = offerRepository.findByFilter(title, type, place,
 				purpose, price, pageable);
@@ -79,13 +78,11 @@ public class OfferController {
 				assembler.toResource(offers), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping("/offers/{id}")
 	public ResponseEntity<Offer> getOfferById(@PathVariable("id") Integer id) {
 		return new ResponseEntity<>(offerRepository.findOne(id), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping("/offers/user/{login}")
 	public ResponseEntity<PagedResources<Resource<Offer>>> getUserOffers(
 			@PathVariable("login") String login,
@@ -93,7 +90,7 @@ public class OfferController {
 			@RequestParam("type") String type,
 			@RequestParam("place") String place,
 			@RequestParam("purpose") String purpose,
-			@RequestParam("price") String price, Pageable pageable,
+			@RequestParam("price") Double price, Pageable pageable,
 			PagedResourcesAssembler<Offer> assembler) {
 		User user = userRepository.findOne(login);
 		Page<Offer> offers = offerRepository.findByUserAndFilter(login, title,
@@ -102,7 +99,6 @@ public class OfferController {
 				assembler.toResource(offers), HttpStatus.OK);
 	}
 
-	@CrossOrigin
 	@RequestMapping(method = { RequestMethod.DELETE }, value = { "/offers/delete/{id}" })
 	public ResponseEntity<Iterable<Offer>> removeOffer(
 			@RequestHeader("Authorization") String token,

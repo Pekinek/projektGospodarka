@@ -21,7 +21,7 @@ public interface OfferRepository extends
 	Page<Offer> findByUserAndFilter(@Param("login") String login,
 			@Param("title") String title, @Param("type") String type,
 			@Param("place") String place, @Param("purpose") String purpose,
-			@Param("price") String price, Pageable pageable);
+			@Param("price") Double price, Pageable pageable);
 
 	@Query("select c from Offer c where c.title like %?1"
 			 + " and c.type like %?2"
@@ -29,7 +29,7 @@ public interface OfferRepository extends
 			+ " and c.price <= ?5")
 	Page<Offer> findByFilter(@Param("title") String title,
 			@Param("type") String type, @Param("place") String place,
-			@Param("purpose") String purpose, @Param("price") String price,
+			@Param("purpose") String purpose, @Param("price") Double price,
 			Pageable pageable);
 
 	Page<Offer> findByUserAndArchived(@Param("user") User user,

@@ -18,7 +18,7 @@ public class OfferTest {
         offer.setDescription("opisopis");
         offer.setPictures(new byte[]{2, 33, 11, 54, 122, 76, 44});
         offer.setPlace("wrocław");
-        offer.setPrice("123");
+        offer.setPrice(123.00);
         offer.setPurpose("wynajem");
 
         ObjectMapper mapper = new ObjectMapper();
