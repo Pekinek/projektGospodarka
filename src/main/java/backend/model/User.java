@@ -3,6 +3,7 @@ package backend.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -43,7 +44,7 @@ public class User {
     private String token;
     @NotNull
     @JsonProperty(access = Access.WRITE_ONLY)
-    @Size(min=10, max=50)
+    @Column(length = 1000)
     private String password;
     @NotNull
     @Size(min=1, max=50)
