@@ -14,18 +14,18 @@ import backend.model.User;
 public interface OfferRepository extends
 		PagingAndSortingRepository<Offer, Integer> {
 
-	@Query("select c from Offer c where c.user.login like %?1"
-			+ " and c.title like %?2 " + " and c.type like %?3"
-			+ " and c.place like %?4" + " and c.purpose like %?5"
+	@Query("select c from Offer c where c.user.login like %?1%"
+			+ " and c.title like %?2% " + " and c.type like %?3%"
+			+ " and c.place like %?4%" + " and c.purpose like %?5%" + " and c.archived = 'false'"
 			+ " and c.price <= ?6")
 	Page<Offer> findByUserAndFilter(@Param("login") String login,
 			@Param("title") String title, @Param("type") String type,
 			@Param("place") String place, @Param("purpose") String purpose,
 			@Param("price") Double price, Pageable pageable);
 
-	@Query("select c from Offer c where c.title like %?1"
-			 + " and c.type like %?2"
-			+ " and c.place like %?3" + " and c.purpose like %?4"
+	@Query("select c from Offer c where c.title like %?1%"
+			 + " and c.type like %?2%"
+			+ " and c.place like %?3%" + " and c.purpose like %?4%" + " and c.archived = 'false'"
 			+ " and c.price <= ?5")
 	Page<Offer> findByFilter(@Param("title") String title,
 			@Param("type") String type, @Param("place") String place,
