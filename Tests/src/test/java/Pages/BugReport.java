@@ -32,5 +32,9 @@ public class BugReport extends Browser{
 		driver.findElement(By.cssSelector(SENT_BUTTON_CSS)).click();
 		return this;
 	}
+	
+	public String checkReportButton(WebDriver driver){
+		return driver.findElement(By.cssSelector(SENT_BUTTON_CSS)).getAttribute("disabled");
+	}
 
 }

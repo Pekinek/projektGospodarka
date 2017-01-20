@@ -3,13 +3,11 @@ package TestCase.AutomationTests;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Navigator;
-
 import Pages.DetailsOfOffer;
 import Pages.Login;
 import Pages.NewOffers;
 import TestData.Browser;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class FavoritesPage extends Browser{
 	

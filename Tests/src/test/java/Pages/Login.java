@@ -8,7 +8,7 @@ import TestData.Browser;
 public class Login extends Browser{
 
 	private static final String login = "Test1";
-	private static final String password = "Test1";
+	private static final String password = "0123456789";
 	private static final String LOGIN_FIELD_CSS = "#login";
 	private static final String PASSWORD_FIELD_CSS = "#password";
 	private static final String LOGIN_BUTTON_CSS = "#login_submit";

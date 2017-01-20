@@ -3,12 +3,10 @@ package TestCase.AutomationTests;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import PageObjects.Navigation;
 import Pages.Login;
 import TestData.Browser;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class LoginPage extends Browser{
 	

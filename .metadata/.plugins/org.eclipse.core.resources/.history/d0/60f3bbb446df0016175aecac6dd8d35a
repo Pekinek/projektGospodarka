@@ -1,0 +1,28 @@
+package TestCase.AutomationTests;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Pages.Registration;
+import TestData.Browser;
+import org.junit.Assert;
+
+public class RegistrationPage extends Browser{
+	
+	@Before
+	public void setuo(){
+		prepareBrowser();
+	}
+	
+	@Test
+	public void checkFieldsOnRegistrationPage(){
+		Registration registration = navigate
+				.goToRegistrationPage(driver)
+				.provideDataToRegistration(driver)
+				.pressRegistrationButton(driver);
+		
+		waitUntilPageFinishLoading(driver);
+		
+		Assert.assertEquals(expected, actual);
+	}
+}

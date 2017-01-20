@@ -6,7 +6,7 @@ import org.junit.Test;
 import Pages.Login;
 import Pages.MyOffers;
 import TestData.Browser;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class MyOffersPage extends Browser{
 	

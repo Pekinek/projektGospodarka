@@ -1,7 +1,5 @@
 package TestCase.AutomationTests;
 
-import java.lang.annotation.Repeatable;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -10,7 +8,7 @@ import PageObjects.Navigation;
 import Pages.AddOffers;
 import Pages.Login;
 import TestData.Browser;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class AddOffersPage extends Browser{
 	

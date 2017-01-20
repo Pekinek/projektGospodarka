@@ -13,7 +13,7 @@ public class AddOffers extends Browser{
 	private String title = "Nowe tanie mieszkanie ";
 	private String city = "Wrocław";
 	private String destiny = "sale";
-	private String price = "1 000 000";
+	private String price = "1000000";
 	private String type = "flat";
 	private String description = "Super tanie mieszkanie. Więcej informacji pod numerem: xxx xxx xxx";
 	private static final String TITLE_FIELD_CSS = "#title";

@@ -15,10 +15,12 @@ import Pages.Login;
 import Pages.MyAccount;
 import Pages.MyOffers;
 import Pages.NewOffers;
+import Pages.Registration;
 import TestData.Browser;
 
 public class Navigation extends Browser{
 	private static final String LOGIN_XPATH = "//*[@ui-sref='login.login']";
+	private static final String REGISTRATION_LINK_CSS = ".register-link>span";
 	private static final String MY_ACCOUNT_XAPTH = "//*[@class='description ng-binding' and text()='Moje konto']";
 	private static final String MY_OFFERS_XPATH = "//*[@class='description ng-binding' and text()='Moje oferty']";
 	private static final String FAVORITES_XPATH = "//*[@class='description ng-binding' and text()='Ulubione']";

@@ -2,14 +2,11 @@ package TestCase.AutomationTests;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import PageObjects.Messages;
-import PageObjects.Navigation;
 import Pages.BugReport;
 import Pages.Login;
 import TestData.Browser;
-import junit.framework.Assert;
+import org.junit.Assert;
 
 public class BugReportPage extends Browser{
 	
@@ -37,6 +34,67 @@ public class BugReportPage extends Browser{
 		navigate.logout(driver);
 		closeBrowser();
 		
+	}
+	
+	@Test
+	public void bugReportWithoutEmail(){
+		Login login = navigate
+				.goToLoginPage(driver)
+				.provideDataToLogin(driver)
+				.pressLoginButton(driver);
+		
+		waitUntilPageFinishLoading(driver);
+		
+		BugReport bug = navigate
+				.goToBugReportPage(driver)
+				.provideDataToReportBug(driver, "", "title", "test1");
+		
+		Assert.assertEquals("Niepoprawny format maila", messages.getValidationErrors(driver));
+		Assert.assertEquals("true", bug.checkReportButton(driver));
+		
+		navigate.logout(driver);
+		
+		closeBrowser();
+	}
+	
+	@Test
+	public void bugReportWithoutTitle(){
+		Login login = navigate
+				.goToLoginPage(driver)
+				.provideDataToLogin(driver)
+				.pressLoginButton(driver);
+		
+		waitUntilPageFinishLoading(driver);
+		
+		BugReport bug = navigate
+				.goToBugReportPage(driver)
+				.provideDataToReportBug(driver, "Test@Test.com", "", "test1");
+		
+		Assert.assertEquals("true", bug.checkReportButton(driver));
+		
+		navigate.logout(driver);
+		
+		closeBrowser();
+	}
+	
+	@Test
+	public void bugReportWithoutDescription(){
+		Login login = navigate
+				.goToLoginPage(driver)
+				.provideDataToLogin(driver)
+				.pressLoginButton(driver);
+		
+		waitUntilPageFinishLoading(driver);
+		
+		BugReport bug = navigate
+				.goToBugReportPage(driver)
+				.provideDataToReportBug(driver, "Test@Test.com", "title", "");
+		
+		Assert.assertEquals("true", bug.checkReportButton(driver));
+		
+		navigate.logout(driver);
+		
+		closeBrowser();
 	}
 
 }

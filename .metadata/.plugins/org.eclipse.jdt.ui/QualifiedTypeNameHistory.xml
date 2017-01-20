@@ -10,12 +10,10 @@
 <fullyQualifiedTypeName name="Pages.MyAccount"/>
 <fullyQualifiedTypeName name="org.junit.Test"/>
 <fullyQualifiedTypeName name="Pages.Login"/>
-<fullyQualifiedTypeName name="TestData.Browser"/>
 <fullyQualifiedTypeName name="org.openqa.selenium.WebDriver"/>
 <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
 <fullyQualifiedTypeName name="PageObjects.ConfirmWindow"/>
 <fullyQualifiedTypeName name="Pages.MyOffers"/>
-<fullyQualifiedTypeName name="junit.framework.Assert"/>
 <fullyQualifiedTypeName name="org.junit.runner.RunWith"/>
 <fullyQualifiedTypeName name="java.lang.annotation.Repeatable"/>
 <fullyQualifiedTypeName name="TestCase.AutomationTests.AddOffersPage"/>
@@ -25,4 +23,7 @@
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="TestData.Browser"/>
+<fullyQualifiedTypeName name="Pages.Registration"/>
+<fullyQualifiedTypeName name="junit.framework.Assert"/>
 </qualifiedTypeNameHistroy>
